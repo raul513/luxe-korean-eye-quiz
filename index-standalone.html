@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxe | Korean Under-Eye Balm – Free Skin Quiz</title>
+  <meta name="description" content="Take this 1-minute quiz to find out if the Luxe Korean Under-Eye Balm is right for you and claim your exclusive discount." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   LUXE KOREAN UNDER-EYE BALM — QUIZ FUNNEL
+   Design: Exact replica of Seranova Beauty quiz style
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --page-bg:        #EDF5F8;
+  --white:          #FFFFFF;
+  --off-white:      #FAFAFA;
+  --text-primary:   #0A0908;
+  --text-secondary: #2E4047;
+  --text-muted:     #6B7280;
+  --option-bg:      #FFFFFF;
+  --option-border:  #000000;
+  --option-radius:  6px;
+  --option-padding: 14.4px;
+  --option-selected-bg:    #E8F4F0;
+  --option-selected-border:#2F4247;
+  --btn-bg:         #2F4247;
+  --btn-radius:     40px;
+  --btn-text:       #FFFFFF;
+  --badge-bg:       #2F4247;
+  --badge-text:     #FFFFFF;
+  --progress-track: #EAEAEB;
+  --progress-fill:  #2F4247;
+  --green:          #16A34A;
+  --green-light:    #DCFCE7;
+  --red:            #DC2626;
+  --red-light:      #FEE2E2;
+  --gold:           #D97706;
+  --max-width:      480px;
+  --font:           'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --transition:     0.18s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background-color: var(--page-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--btn-bg); text-decoration: underline; }
+
+/* HEADER */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid #E5E7EB;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-text {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+  font-style: italic;
+}
+.logo-sub {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: -2px;
+  text-align: center;
+}
+
+/* PROGRESS BAR */
+.progress-wrap {
+  background: var(--white);
+  border-bottom: 1px solid #E5E7EB;
+  display: none;
+}
+.progress-wrap.visible { display: block; }
+.progress-bar-track {
+  height: 6px;
+  background: var(--progress-track);
+  width: 100%;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--progress-fill);
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* QUIZ CONTAINER */
+.quiz-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* SCREENS */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeUp 0.28s ease; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.screen-inner { padding: 28px 0 20px; }
+
+/* SALE BADGE */
+.sale-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 14px 5px 8px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.sale-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #FF6B6B;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* INTRO */
+.intro-screen { text-align: center; padding-top: 28px; }
+.intro-headline {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.intro-headline .underline {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* QUESTION HEADER */
+.question-header {
+  text-align: center;
+  margin-bottom: 22px;
+  padding-top: 8px;
+}
+.question-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.question-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* OPTIONS — Seranova EXACT style */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--option-bg);
+  border: 2px solid var(--option-border);
+  border-radius: var(--option-radius);
+  padding: 14.4px;
+  cursor: pointer;
+  transition: all var(--transition);
+  user-select: none;
+  width: 100%;
+}
+.option-item:hover {
+  background: #F5FAFA;
+  border-color: var(--option-selected-border);
+}
+.option-item.selected {
+  background: #E8F4F0;
+  border-color: var(--option-selected-border);
+}
+.option-radio, .option-checkbox { display: none; }
+.option-text-wrap { flex: 1; }
+.option-main-text {
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: block;
+  line-height: 1.4;
+}
+.option-sub-text {
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 1px;
+}
+.option-emoji {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  min-width: 22px;
+}
+
+/* BUTTONS */
+.btn-primary {
+  display: block;
+  width: 100%;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 15px 24px;
+  border: none;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #1e2e33;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(47,66,71,0.35);
+  color: var(--white);
+  text-decoration: none;
+}
+.btn-cta { background: #C0392B; font-size: 1.05rem; font-weight: 700; padding: 17px 24px; }
+.btn-cta:hover { background: #a93226; }
+.btn-offer { background: #16A34A; font-size: 1.05rem; font-weight: 700; padding: 17px 24px; }
+.btn-offer:hover { background: #15803d; }
+
+/* INTERSTITIAL */
+.interstitial-screen { text-align: center; }
+.interstitial-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.interstitial-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+/* TESTIMONIALS */
+.testimonials-stack, .testimonials-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 16px;
+}
+.testi-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.testi-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--btn-bg);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.testi-name { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
+.testi-stars { color: var(--gold); font-size: 0.75rem; }
+.testimonial-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* LOADING */
+.loading-screen { text-align: center; padding-top: 48px; }
+.loading-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 36px; color: var(--text-primary); }
+.loading-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 320px;
+  margin: 0 auto 32px;
+  text-align: left;
+}
+.loading-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.step-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  color: #D1D5DB;
+}
+.step-icon.done { background: var(--green); border-color: var(--green); color: var(--white); }
+.step-icon.active { border-color: var(--btn-bg); color: var(--btn-bg); animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.progress-track-wrap {
+  height: 8px;
+  background: var(--progress-track);
+  border-radius: 99px;
+  overflow: hidden;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.progress-track-fill {
+  height: 100%;
+  background: var(--btn-bg);
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+.loading-sub { font-size: 0.82rem; color: var(--text-muted); margin-top: 12px; }
+
+/* PROFILE */
+.profile-badge {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 14px;
+}
+.profile-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; color: var(--text-primary); }
+.profile-sub { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; }
+.profile-metrics {
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 24px;
+}
+.metric-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.metric-row:last-child { margin-bottom: 0; }
+.metric-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); width: 130px; flex-shrink: 0; }
+.metric-bar-track { flex: 1; height: 7px; background: #E5E7EB; border-radius: 99px; overflow: hidden; }
+.metric-bar-fill { height: 100%; border-radius: 99px; }
+.metric-bar-fill.bad { background: var(--red); }
+.metric-bar-fill.warn { background: var(--gold); }
+.metric-val { font-size: 0.75rem; font-weight: 700; width: 80px; text-align: right; flex-shrink: 0; }
+.metric-val.bad { color: var(--red); }
+.metric-val.warn { color: var(--gold); }
+
+/* INSIGHT BOX */
+.insight-box {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 0.84rem;
+  color: #1E40AF;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+/* RESULTS */
+.results-header { text-align: center; margin-bottom: 28px; }
+.results-eyebrow { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.results-title { font-size: 1.5rem; font-weight: 800; line-height: 1.3; margin-bottom: 6px; color: var(--text-primary); }
+.results-title .highlight { color: var(--btn-bg); }
+.results-sub { font-size: 0.88rem; color: var(--text-muted); }
+.transformation-card {
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.transformation-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.transform-col-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.transform-arrow { font-size: 1.2rem; color: var(--btn-bg); align-self: center; text-align: center; }
+.transform-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+}
+.transform-item.bad { background: var(--red-light); color: var(--red); }
+.transform-item.good { background: var(--green-light); color: var(--green); }
+.transform-item span:nth-child(2) { font-weight: 600; flex: 1; }
+.transform-level { font-size: 0.7rem; font-weight: 700; }
+.results-checks { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.result-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  background: var(--green-light);
+  border-radius: 6px;
+  padding: 10px 12px;
+  line-height: 1.5;
+}
+.result-check-icon { color: var(--green); font-size: 1rem; flex-shrink: 0; }
+.how-to-use {
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.how-to-use h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.how-to-use p { font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 16px; }
+.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 400px) { .steps-row { grid-template-columns: repeat(2, 1fr); } }
+.step-item { text-align: center; }
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--btn-bg);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+}
+.step-item p { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+
+/* OFFER */
+.offer-eyebrow { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+.offer-title { font-size: 1.5rem; font-weight: 800; text-align: center; margin-bottom: 24px; line-height: 1.3; }
+.offer-card {
+  background: var(--white);
+  border: 2px solid var(--btn-bg);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 36px;
+}
+.offer-product-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E5E7EB;
+}
+.offer-product-icon { font-size: 2.2rem; }
+.offer-product-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 3px; }
+.offer-product-info p { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+.stars { color: var(--gold); font-size: 0.88rem; }
+.stars span { color: var(--text-muted); font-size: 0.8rem; }
+.offer-pricing {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E5E7EB;
+}
+.price-original { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 3px; }
+.price-original s { color: var(--red); }
+.price-quiz { font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin-bottom: 3px; }
+.price-quiz strong { color: var(--green); }
+.price-save { font-size: 0.84rem; font-weight: 600; color: var(--green); }
+.offer-guarantees { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.guarantee-item { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; }
+.offer-disclaimer { text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; }
+.ingredients-section { margin-bottom: 36px; }
+.ingredients-section h3 { font-size: 1.1rem; font-weight: 700; text-align: center; margin-bottom: 6px; }
+.ingredients-intro { font-size: 0.84rem; color: var(--text-secondary); text-align: center; margin-bottom: 16px; }
+.ingredients-list { display: flex; flex-direction: column; gap: 10px; }
+.ingredient-item {
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.ingredient-item strong { display: block; font-size: 0.88rem; color: var(--btn-bg); margin-bottom: 3px; }
+.ingredient-item p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+.final-cta-wrap { text-align: center; margin-top: 8px; }
+.final-guarantee { font-size: 0.78rem; color: var(--text-muted); margin-top: 10px; text-align: center; }
+
+/* FOOTER */
+.site-footer { background: var(--white); border-top: 1px solid #E5E7EB; padding: 18px 20px; }
+.footer-inner { max-width: var(--max-width); margin: 0 auto; text-align: center; }
+.footer-inner p { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+
+/* DISCLAIMER */
+.disclaimer-small { font-size: 0.72rem; color: var(--text-muted); margin-top: 12px; text-align: center; }
+
+/* RESPONSIVE */
+@media (max-width: 520px) {
+  .quiz-container { padding: 0 14px 80px; }
+  .intro-headline { font-size: 1.45rem; }
+  .question-title { font-size: 1.25rem; }
+  .results-title { font-size: 1.3rem; }
+  .transformation-grid { grid-template-columns: 1fr; }
+  .transform-arrow { transform: rotate(90deg); text-align: center; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-text">Luxe</span>
+        <span class="logo-sub">Research Lab</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+  </div>
+
+  <!-- QUIZ CONTAINER -->
+  <main class="quiz-container" id="quizContainer">
+
+    <!-- SCREEN 0 — INTRO + AGE -->
+    <section class="screen active" id="screen-0">
+      <div class="screen-inner intro-screen">
+        <div class="sale-badge">
+          <span class="sale-badge-dot"></span>
+          SPRING SALE
+        </div>
+        <h1 class="intro-headline">
+          Take This 1-Minute Quiz To <span class="underline">Claim Your $20 Discount!</span>
+        </h1>
+        <div class="question-header" style="margin-top:24px;">
+          <h2 class="question-title">How old are you? 🤔</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingleIntro(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Over 65</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingleIntro(this)">
+            <div class="option-text-wrap"><span class="option-main-text">55–64</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingleIntro(this)">
+            <div class="option-text-wrap"><span class="option-main-text">45–54</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingleIntro(this)">
+            <div class="option-text-wrap"><span class="option-main-text">35–44</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingleIntro(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Under 35</span></div>
+          </div>
+        </div>
+        <p class="disclaimer-small">By clicking any of the options above, you agree with the <a href="#">Terms of Use and Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 1 — placeholder -->
+    <section class="screen" id="screen-1"></section>
+
+    <!-- SCREEN 2 — MAIN CONCERN -->
+    <section class="screen" id="screen-2">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">What is your biggest under-eye concern? 🤷</h2>
+          <p class="question-sub">(Choose as many as you like)</p>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="toggleMulti(this)">
+            <span class="option-emoji">🫧</span>
+            <div class="option-text-wrap">
+              <span class="option-main-text">Puffiness & Bags</span>
+              <span class="option-sub-text">Swollen, puffy under-eyes in the morning</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <span class="option-emoji">🌑</span>
+            <div class="option-text-wrap">
+              <span class="option-main-text">Dark Circles</span>
+              <span class="option-sub-text">Shadowy, discolored skin under the eyes</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <span class="option-emoji">〰️</span>
+            <div class="option-text-wrap">
+              <span class="option-main-text">Fine Lines & Wrinkles</span>
+              <span class="option-sub-text">Crow's feet and crepey texture</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <span class="option-emoji">💧</span>
+            <div class="option-text-wrap">
+              <span class="option-main-text">Dryness & Crepey Skin</span>
+              <span class="option-sub-text">Thin, dry, papery under-eye skin</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <span class="option-emoji">😴</span>
+            <div class="option-text-wrap">
+              <span class="option-main-text">Tired-Looking Eyes</span>
+              <span class="option-sub-text">People always ask if you're tired</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3 — SEVERITY -->
+    <section class="screen" id="screen-3">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">How severe are your under-eye concerns? 🤷</h2>
+          <p class="question-sub">(Choose as many as you like)</p>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Mild — Noticeable only up close</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Moderate — Visible in photos & mirrors</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Significant — Others notice & comment</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Severe — Makes me look much older/tired</span></div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4 — SOCIAL PROOF -->
+    <section class="screen" id="screen-4">
+      <div class="screen-inner interstitial-screen">
+        <div class="interstitial-icon">💪</div>
+        <h2 class="interstitial-title">You are in the right place!<br>Thousands of women have transformed their under-eyes thanks to <strong>Luxe!</strong></h2>
+        <div class="testimonials-stack">
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">M</div>
+              <div><div class="testi-name">Margaret T., 56</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"Day 4 my husband asked what I was doing differently. By day 10 the puffiness was genuinely less visible. First eye cream that actually did something I could see with my own eyes."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">D</div>
+              <div><div class="testi-name">Diane K., 52</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"This absorbs in seconds and I could feel the difference by end of week one. My fine lines look softer. Dark circles lighter. I'm genuinely angry nobody told me about this sooner."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">S</div>
+              <div><div class="testi-name">Susan L., 47</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"Three weeks in my under-eyes look rested. Smoother. More alive. My daughter said I look like I came back from vacation. I didn't lol. Just found the right eye balm finally."</p>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextScreen()">Continue My Quiz →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 5 — SUN EXPOSURE -->
+    <section class="screen" id="screen-5">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">How often is your skin exposed to the sun? ☀️</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Rarely — I stay mostly indoors</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Sometimes — Occasional outdoor activities</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Often — I'm outdoors most days</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Daily — Extended sun exposure regularly</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 6 — SLEEP -->
+    <section class="screen" id="screen-6">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">How much sleep do you usually get? 💤</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Less than 5 hours</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">5–6 hours</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">7–8 hours</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">My sleep is unpredictable</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 7 — STRESS -->
+    <section class="screen" id="screen-7">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">I feel the pressure of stress… 😤</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Most days, especially at work</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Mainly during busy periods</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Occasionally</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Rarely — I manage stress well</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 8 — SENSITIVE SKIN -->
+    <section class="screen" id="screen-8">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">Do you have sensitive skin? 🤔</h2>
+          <p class="question-sub">The under-eye area is the thinnest skin on your face</p>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Yes — My skin reacts to most products</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Sometimes — Certain ingredients irritate me</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">No — My skin tolerates most products</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 9 — LOADING (profile) -->
+    <section class="screen" id="screen-9">
+      <div class="screen-inner loading-screen">
+        <h2 class="loading-title">Creating your skin profile…</h2>
+        <div class="loading-steps">
+          <div class="loading-step"><span class="step-icon" id="sicon-0">○</span><span>Evaluating your answers</span></div>
+          <div class="loading-step"><span class="step-icon" id="sicon-1">○</span><span>Analyzing your under-eye condition</span></div>
+          <div class="loading-step"><span class="step-icon" id="sicon-2">○</span><span>Determining your skin type</span></div>
+          <div class="loading-step"><span class="step-icon" id="sicon-3">○</span><span>Building your summary</span></div>
+        </div>
+        <div class="progress-track-wrap">
+          <div class="progress-track-fill" id="loadingFill1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 10 — PROFILE RESULT -->
+    <section class="screen" id="screen-10">
+      <div class="screen-inner">
+        <div style="text-align:center; margin-bottom:16px;">
+          <div class="profile-badge">Perfect Match for Luxe! ✅</div>
+        </div>
+        <h2 class="profile-title" style="text-align:center;">Your Personal Skin Profile</h2>
+        <p class="profile-sub">Based on your age, under-eye condition, and lifestyle, you are an <strong>ideal candidate</strong> to achieve visibly brighter, smoother, and more rested-looking eyes with Luxe Korean Under-Eye Balm — with virtually no pain or risk of side effects!</p>
+        <div class="profile-metrics">
+          <div class="metric-row">
+            <span class="metric-label">Under-Eye Hydration</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill bad" style="width:28%"></div></div>
+            <span class="metric-val bad">Low</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Skin Elasticity</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill bad" style="width:22%"></div></div>
+            <span class="metric-val bad">Below Avg</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Dark Circle Intensity</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill warn" style="width:72%"></div></div>
+            <span class="metric-val warn">High</span>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 11 — PREVIOUS SOLUTIONS -->
+    <section class="screen" id="screen-11">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">What solutions have you tried before?</h2>
+          <p class="question-sub">(Choose all that apply)</p>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Eye creams & serums</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Retinol products</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Vitamin C serums</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Luxury department store brands</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Concealer / makeup coverage</span></div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Nothing — I haven't found anything that works</span></div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 12 — EXPERIENCE -->
+    <section class="screen" id="screen-12">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">What was your experience with these products?</h2>
+          <p class="question-sub">(Choose all that apply)</p>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Amazing</span>
+              <span class="option-sub-text">Great results exactly as promised</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Saw improvements</span>
+              <span class="option-sub-text">Helped with hydration but not puffiness or dark circles</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Disappointing</span>
+              <span class="option-sub-text">Spent a lot but saw minimal results</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Complete waste of money</span>
+              <span class="option-sub-text">Saw zero improvement</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="toggleMulti(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Irritated or damaged my skin</span>
+              <span class="option-sub-text">Caused redness, stinging, or puffiness</span>
+            </div>
+          </div>
+        </div>
+        <div class="insight-box">💡 If you want truly rested, younger-looking eyes you need ingredients that actually absorb into the thin under-eye skin — not sit on top of it.</div>
+        <button class="btn-primary" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 13 — SKINCARE ROUTINE -->
+    <section class="screen" id="screen-13">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">What does your current skin care routine look like?</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Minimal routine</span>
+              <span class="option-sub-text">Just cleanser, moisturizer (or less)</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Basic routine</span>
+              <span class="option-sub-text">Cleanser, Moisturizer, and SPF</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Moderate Routine</span>
+              <span class="option-sub-text">Multiple products (serums, eye cream, etc)</span>
+            </div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap">
+              <span class="option-main-text">Extensive Routine</span>
+              <span class="option-sub-text">5+ products with active ingredients (retinol, vitamin c, etc.)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 14 — REPLACE ROUTINE -->
+    <section class="screen" id="screen-14">
+      <div class="screen-inner interstitial-screen">
+        <h2 class="interstitial-title">Replace Your Entire Eye Care Routine With Luxe</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:20px;">"Better results for much less cost and time"</p>
+        <div class="testimonials-stack">
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">L</div>
+              <div><div class="testi-name">Linda R., 51</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"Two weeks into using this I skipped concealer one morning just to test it. My coworker said I looked good. No concealer. First time in years honestly."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">C</div>
+              <div><div class="testi-name">Carol A., 63</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"I threw away an entire drawer of eye creams. Spent thousands over the years and they never worked. With Luxe, I actually see results. My dark circles are fading and I'm saving hundreds every month."</p>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 15 — EMOTIONAL -->
+    <section class="screen" id="screen-15">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">Have you ever felt like your under-eyes make you look older than you feel inside? 🤔</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Yes — Every time I look in the mirror</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Sometimes — Especially in photos</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Occasionally — On bad days</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Not really — I'm comfortable with my skin</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 16 — CONFIDENCE -->
+    <section class="screen" id="screen-16">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">What would it feel like to see bright, rested eyes looking back at you in the mirror?</h2>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">I'd feel a surge of confidence</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">I'd finally feel like myself again</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">I'd stop hiding from cameras</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">I'd skip the concealer for the first time in years</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 17 — EVENT -->
+    <section class="screen" id="screen-17">
+      <div class="screen-inner">
+        <div class="question-header">
+          <h2 class="question-title">Do you have an important event coming up?</h2>
+          <p class="question-sub">Having something to look forward to can be a great motivator for reaching your goal</p>
+        </div>
+        <div class="options-list">
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Wedding or special celebration</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Vacation or travel</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Family reunion or photos</span></div>
+          </div>
+          <div class="option-item" onclick="selectSingle(this)">
+            <div class="option-text-wrap"><span class="option-main-text">Just want to feel confident daily</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 18 — CALCULATING -->
+    <section class="screen" id="screen-18">
+      <div class="screen-inner loading-screen">
+        <h2 class="loading-title">Calculating possible skin transformation…</h2>
+        <div class="progress-track-wrap">
+          <div class="progress-track-fill" id="loadingFill2"></div>
+        </div>
+        <p class="loading-sub">Analyzing your unique under-eye profile…</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 19 — RESULTS -->
+    <section class="screen" id="screen-19">
+      <div class="screen-inner">
+        <div class="results-header">
+          <p class="results-eyebrow">Based on your answers:</p>
+          <h2 class="results-title">You Are Just <span class="highlight">3 Weeks Away</span> From Brighter, Rested-Looking Eyes!</h2>
+          <p class="results-sub">Here's what you can expect:</p>
+        </div>
+        <div class="transformation-card">
+          <div class="transformation-grid">
+            <div>
+              <div class="transform-col-label">RIGHT NOW</div>
+              <div class="transform-item bad"><span>🫧</span><span>Puffiness & Bags</span><span class="transform-level">Visible</span></div>
+              <div class="transform-item bad"><span>🌑</span><span>Dark Circles</span><span class="transform-level">Moderate–High</span></div>
+              <div class="transform-item bad"><span>〰️</span><span>Fine Lines</span><span class="transform-level">Present</span></div>
+              <div class="transform-item bad"><span>💧</span><span>Hydration</span><span class="transform-level">Below Avg</span></div>
+            </div>
+            <div class="transform-arrow">→</div>
+            <div>
+              <div class="transform-col-label">AFTER LUXE</div>
+              <div class="transform-item good"><span>✅</span><span>Puffiness & Bags</span><span class="transform-level">Visibly Reduced</span></div>
+              <div class="transform-item good"><span>✅</span><span>Dark Circles</span><span class="transform-level">Visibly Lighter</span></div>
+              <div class="transform-item good"><span>✅</span><span>Fine Lines</span><span class="transform-level">Smoothed</span></div>
+              <div class="transform-item good"><span>✅</span><span>Hydration</span><span class="transform-level">Deeply Restored</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="results-checks">
+          <div class="result-check"><span class="result-check-icon">✅</span>First visible results after just <strong>&nbsp;1 week</strong> of daily use.</div>
+          <div class="result-check"><span class="result-check-icon">✅</span>Visibly reduced puffiness and dark circles by <strong id="targetDate">&nbsp;</strong></div>
+          <div class="result-check"><span class="result-check-icon">✅</span>No fragrance, no alcohol, no harsh actives — <strong>safe for sensitive skin</strong></div>
+        </div>
+        <div class="how-to-use">
+          <h3>You Can Use Luxe In Just 2 Minutes From Home</h3>
+          <p>You don't need a complicated 10-step routine. Just apply a small dab of Luxe Korean Under-Eye Balm morning and night — and let it work its magic.</p>
+          <div class="steps-row">
+            <div class="step-item"><div class="step-num">1</div><p>Cleanse your face</p></div>
+            <div class="step-item"><div class="step-num">2</div><p>Apply a small dab under each eye</p></div>
+            <div class="step-item"><div class="step-num">3</div><p>Let it absorb in seconds</p></div>
+            <div class="step-item"><div class="step-num">4</div><p>Apply makeup or go bare</p></div>
+          </div>
+        </div>
+        <button class="btn-primary btn-cta" onclick="nextScreen()">Claim My Discount Now →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 20 — FINAL OFFER -->
+    <section class="screen" id="screen-20">
+      <div class="screen-inner">
+        <p class="offer-eyebrow">Applying one-time Discount…</p>
+        <h2 class="offer-title">Congratulations! 🎉 Your Personalized Offer is Ready</h2>
+        <div class="offer-card">
+          <div class="offer-product-row">
+            <div class="offer-product-icon">👁️</div>
+            <div class="offer-product-info">
+              <h3>Luxe Korean Under-Eye Balm</h3>
+              <p>Korea Formulated for +45 Skin</p>
+              <div class="stars">★★★★★ <span>4.86 (10,839 reviews)</span></div>
+            </div>
+          </div>
+          <div class="offer-pricing">
+            <div class="price-original">Regular Price: <s>$39.95</s></div>
+            <div class="price-quiz">Your Quiz Price: <strong>$34.99</strong></div>
+            <div class="price-save">You Save: $4.96 + FREE Shipping</div>
+          </div>
+          <div class="offer-guarantees">
+            <div class="guarantee-item">🛡️ <strong>30-Day Money-Back Guarantee</strong> — Full refund if you don't see results</div>
+            <div class="guarantee-item">🚚 <strong>Free Shipping</strong> — Ships today</div>
+            <div class="guarantee-item">✅ <strong>100% Dermatologist Approved</strong></div>
+          </div>
+          <a href="https://luxeresearchlab.com/products/luxe-korean-under-eye-balm" class="btn-primary" target="_blank" style="display:block;text-align:center;margin-bottom:8px;">
+            🛒 Claim My Discount — $34.99
+          </a>
+          <p class="offer-disclaimer">Secure checkout. 256-bit SSL encryption.</p>
+        </div>
+        <div class="ingredients-section">
+          <h3>Why Luxe Works When Others Don't</h3>
+          <p class="ingredients-intro">Five targeted ingredients. Each one does one specific job for your under-eye skin:</p>
+          <div class="ingredients-list">
+            <div class="ingredient-item"><strong>Sodium Hyaluronate</strong><p>Pulls moisture deep into skin. Plumps dry, crepey under-eyes.</p></div>
+            <div class="ingredient-item"><strong>Adenosine</strong><p>Smooths fine lines. Firms skin that's lost its bounce.</p></div>
+            <div class="ingredient-item"><strong>Argan Oil</strong><p>Softens and nourishes. Absorbs fast. No greasy residue.</p></div>
+            <div class="ingredient-item"><strong>Vitamin E</strong><p>Protects your skin from daily damage your eyes always show.</p></div>
+            <div class="ingredient-item"><strong>Bisabolol</strong><p>Calms redness and irritation on contact. Made for sensitive skin.</p></div>
+          </div>
+        </div>
+        <div class="testimonials-row">
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">B</div>
+              <div><div class="testi-name">Barbara M., 43</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"Last Sunday my daughter grabbed my phone and took a selfie of us. I looked at it and didn't delete it. That hasn't happened in a long time. Three weeks using this."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">C</div>
+              <div><div class="testi-name">Carol A., 63</div><div class="testi-stars">★★★★★</div></div>
+            </div>
+            <p>"The dark circles are visibly lighter. Yesterday I caught myself actually looking in the mirror. Not glancing. Looking. That alone was worth every penny."</p>
+          </div>
+        </div>
+        <div class="final-cta-wrap">
+          <a href="https://luxeresearchlab.com/products/luxe-korean-under-eye-balm" class="btn-primary btn-offer" target="_blank">
+            🛒 Get Luxe Korean Under-Eye Balm — $34.99
+          </a>
+          <p class="final-guarantee">🛡️ 30-Day Full Refund Guarantee · Free Shipping · Ships Today</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 Luxe Research Lab · <a href="https://luxeresearchlab.com">luxeresearchlab.com</a></p>
+      <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Use and Service</a> · <a href="#">Contact Us</a></p>
+    </div>
+  </footer>
+
+  <script>
+/* ============================================================
+   LUXE QUIZ — JavaScript (inline)
+   ============================================================ */
+
+let currentScreen = 0;
+const AUTO_ADVANCE = [5, 6, 7, 8, 13, 15, 16, 17];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const target = new Date();
+  target.setDate(target.getDate() + 21);
+  const dateEl = document.getElementById('targetDate');
+  if (dateEl) {
+    dateEl.textContent = target.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+});
+
+function selectSingleIntro(el) {
+  const parent = el.closest('.options-list');
+  if (!parent) return;
+  parent.querySelectorAll('.option-item').forEach(item => item.classList.remove('selected'));
+  el.classList.add('selected');
+  const wrap = document.getElementById('progressWrap');
+  if (wrap) wrap.classList.add('visible');
+  setTimeout(() => goToScreen(2), 300);
+}
+
+function goToScreen(n) {
+  const prev = document.getElementById('screen-' + currentScreen);
+  const next = document.getElementById('screen-' + n);
+  if (!next) return;
+  if (prev) prev.classList.remove('active');
+  next.classList.add('active');
+  currentScreen = n;
+  updateProgress(n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 9)  runLoadingAnimation1();
+  if (n === 18) runLoadingAnimation2();
+}
+
+function nextScreen() {
+  goToScreen(currentScreen + 1);
+}
+
+function updateProgress(n) {
+  const wrap = document.getElementById('progressWrap');
+  const fill = document.getElementById('progressBarFill');
+  if (!wrap || !fill) return;
+  if (n === 0) { wrap.classList.remove('visible'); return; }
+  wrap.classList.add('visible');
+  let pct = 0;
+  if (n >= 1 && n <= 17) { pct = Math.round((n / 17) * 95); }
+  else if (n >= 18) { pct = 100; }
+  fill.style.width = pct + '%';
+}
+
+function selectSingle(el) {
+  const parent = el.closest('.options-list');
+  if (!parent) return;
+  parent.querySelectorAll('.option-item').forEach(item => item.classList.remove('selected'));
+  el.classList.add('selected');
+  if (AUTO_ADVANCE.includes(currentScreen)) {
+    setTimeout(() => nextScreen(), 300);
+  }
+}
+
+function toggleMulti(el) {
+  el.classList.toggle('selected');
+}
+
+function runLoadingAnimation1() {
+  const iconIds = ['sicon-0', 'sicon-1', 'sicon-2', 'sicon-3'];
+  const fill = document.getElementById('loadingFill1');
+  const delays = [600, 1400, 2200, 3000];
+  iconIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.classList.remove('done', 'active'); el.textContent = '○'; }
+  });
+  if (fill) fill.style.width = '0%';
+  iconIds.forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.classList.add('active'); el.textContent = '↻'; }
+      if (fill) fill.style.width = ((i + 0.5) / iconIds.length * 100) + '%';
+    }, delays[i]);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.classList.remove('active'); el.classList.add('done'); el.textContent = '✓'; }
+      if (fill) fill.style.width = ((i + 1) / iconIds.length * 100) + '%';
+      if (i === iconIds.length - 1) { setTimeout(() => goToScreen(10), 600); }
+    }, delays[i] + 600);
+  });
+}
+
+function runLoadingAnimation2() {
+  const fill = document.getElementById('loadingFill2');
+  if (!fill) { setTimeout(() => goToScreen(19), 2200); return; }
+  fill.style.width = '0%';
+  let pct = 0;
+  const interval = setInterval(() => {
+    pct += Math.random() * 10 + 5;
+    if (pct >= 100) {
+      pct = 100;
+      fill.style.width = '100%';
+      clearInterval(interval);
+      setTimeout(() => goToScreen(19), 500);
+    } else {
+      fill.style.width = pct + '%';
+    }
+  }, 180);
+}
+  </script>
+</body>
+</html>
