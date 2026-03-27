@@ -1,482 +1,470 @@
 /* ============================================================
-   LUXE KOREAN UNDER-EYE BALM — QUIZ FUNNEL STYLES
-   Inspired by Seranova Beauty quiz structure
+   LUXE KOREAN UNDER-EYE BALM — QUIZ FUNNEL
+   Design: Exact replica of Seranova Beauty quiz style
+   Colors: bg #EDF5F8, options white/black border, dark teal CTA
    ============================================================ */
 
-/* ---------- RESET & BASE ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ---------- RESET ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ---------- DESIGN TOKENS (Seranova exact) ---------- */
 :root {
-  --bg:          #f5f0f8;
-  --white:       #ffffff;
-  --card:        #faf8fc;
-  --border:      #e8e0f0;
-  --text-dark:   #1a1025;
-  --text-mid:    #4a3f5c;
-  --text-light:  #7a6e8a;
-  --accent:      #8b5cf6;       /* Purple — Luxe brand */
-  --accent-dark: #6d28d9;
-  --accent-light:#ede9fe;
-  --pink:        #ec4899;
-  --pink-light:  #fce7f3;
-  --green:       #10b981;
-  --green-light: #d1fae5;
-  --red:         #ef4444;
-  --red-light:   #fee2e2;
-  --gold:        #f59e0b;
-  --radius:      14px;
-  --radius-sm:   8px;
-  --shadow:      0 4px 24px rgba(139,92,246,0.10);
-  --shadow-card: 0 2px 12px rgba(0,0,0,0.07);
-  --transition:  0.22s ease;
-  --font:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Page */
+  --page-bg:        #EDF5F8;   /* rgb(237,245,248) — Seranova exact */
+  --white:          #FFFFFF;
+  --off-white:      #FAFAFA;   /* rgb(250,250,251) */
+
+  /* Text */
+  --text-primary:   #0A0908;   /* rgb(10,9,8) — Seranova exact */
+  --text-secondary: #2E4047;   /* rgb(46,64,71) */
+  --text-muted:     #6B7280;
+
+  /* Options */
+  --option-bg:      #FFFFFF;
+  --option-border:  #000000;   /* 2px solid black — Seranova exact */
+  --option-radius:  6px;
+  --option-padding: 14.4px;
+  --option-selected-bg:    #E8F4F0;
+  --option-selected-border:#2F4247;  /* rgb(47,66,71) — Seranova dark teal */
+
+  /* CTA / Buttons */
+  --btn-bg:         #2F4247;   /* rgb(47,66,71) — Seranova exact */
+  --btn-radius:     40px;
+  --btn-text:       #FFFFFF;
+
+  /* Accent / Sale badge */
+  --badge-bg:       #2F4247;   /* rgb(47,72,78) */
+  --badge-text:     #FFFFFF;
+
+  /* Progress */
+  --progress-track: #EAEAEB;   /* rgb(234,234,235) */
+  --progress-fill:  #2F4247;
+
+  /* Green for results */
+  --green:          #16A34A;
+  --green-light:    #DCFCE7;
+  --red:            #DC2626;
+  --red-light:      #FEE2E2;
+  --gold:           #D97706;
+
+  /* Layout */
+  --max-width:      480px;
+  --font:           'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --transition:     0.18s ease;
 }
 
+/* ---------- BASE ---------- */
 html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
-  background-color: var(--bg);
-  color: var(--text-dark);
+  background-color: var(--page-bg);
+  color: var(--text-primary);
   min-height: 100vh;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { color: var(--btn-bg); text-decoration: underline; }
 
-/* ---------- HEADER ---------- */
+/* ---------- HEADER — Seranova style: white bg, centered logo ---------- */
 .site-header {
   background: var(--white);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #E5E7EB;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 .header-inner {
-  max-width: 680px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 14px 20px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
 }
-.logo { display: flex; align-items: baseline; gap: 6px; }
+.logo {
+  text-align: center;
+}
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+  font-style: italic;
 }
 .logo-sub {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  color: var(--text-light);
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.header-badge {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  font-weight: 500;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: -2px;
 }
 
-/* ---------- PROGRESS BAR ---------- */
+/* ---------- PROGRESS BAR — Seranova style ---------- */
 .progress-wrap {
   background: var(--white);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 20px 8px;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0;
   display: none;
 }
 .progress-wrap.visible { display: block; }
-.progress-bar {
+
+.progress-bar-track {
   height: 6px;
-  background: var(--border);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-bottom: 6px;
+  background: var(--progress-track);
+  width: 100%;
 }
-.progress-bar::after {
-  content: '';
-  display: block;
+.progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--pink));
-  border-radius: 99px;
-  width: var(--progress, 0%);
+  background: var(--progress-fill);
+  width: 0%;
   transition: width 0.4s ease;
-}
-.progress-label {
-  font-size: 0.72rem;
-  color: var(--text-light);
-  text-align: center;
-  font-weight: 500;
 }
 
 /* ---------- QUIZ CONTAINER ---------- */
 .quiz-container {
-  max-width: 680px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 16px 60px;
+  padding: 0 20px 80px;
 }
 
 /* ---------- SCREENS ---------- */
 .screen { display: none; }
-.screen.active { display: block; animation: fadeIn 0.3s ease; }
+.screen.active { display: block; animation: fadeUp 0.28s ease; }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.screen-inner {
-  padding: 32px 0 24px;
-}
+.screen-inner { padding: 28px 0 20px; }
 
-/* ---------- INTRO SCREEN ---------- */
-.intro-screen { text-align: center; }
-
-.promo-badge {
-  display: inline-block;
-  background: var(--pink-light);
-  color: var(--pink);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
+/* ---------- SALE BADGE — Seranova exact: dark teal pill with red dot ---------- */
+.sale-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 14px 5px 8px;
+  border-radius: 20px;
+  margin-bottom: 18px;
   text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: 99px;
-  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+.sale-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #FF6B6B;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.headline {
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
+/* ---------- INTRO SCREEN — Seranova style: headline + options start immediately ---------- */
+.intro-screen {
+  text-align: center;
+  padding-top: 28px;
+}
+.intro-headline {
+  font-size: 1.75rem;
   font-weight: 800;
   line-height: 1.25;
-  color: var(--text-dark);
-  margin-bottom: 16px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
 }
-.underline-accent {
+.intro-headline .underline {
   text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
-
-.subheadline {
-  font-size: 1rem;
-  color: var(--text-mid);
-  max-width: 480px;
-  margin: 0 auto 28px;
+.intro-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
   line-height: 1.6;
 }
 
-.product-preview {
-  margin: 0 auto 32px;
-  max-width: 280px;
-}
-.product-img-placeholder {
+/* Intro product card */
+.intro-product-card {
   background: var(--white);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 20px;
-  box-shadow: var(--shadow);
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-.product-icon { font-size: 3rem; margin-bottom: 10px; }
-.product-name {
-  font-weight: 700;
+.intro-product-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.intro-product-name {
   font-size: 1rem;
-  color: var(--text-dark);
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
 }
 .stars {
   color: var(--gold);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
 }
-.stars span { color: var(--text-mid); font-size: 0.8rem; }
+.stars span { color: var(--text-muted); font-size: 0.8rem; }
 
-.disclaimer-small {
-  font-size: 0.72rem;
-  color: var(--text-light);
-  margin-top: 12px;
-}
-
-/* ---------- QUESTION SCREENS ---------- */
-.question-tag {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+/* ---------- QUESTION HEADER — Seranova style ---------- */
+.question-header {
+  text-align: center;
+  margin-bottom: 22px;
+  padding-top: 8px;
 }
 .question-title {
-  font-size: clamp(1.2rem, 4vw, 1.55rem);
-  font-weight: 700;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-primary);
   line-height: 1.3;
-  color: var(--text-dark);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .question-sub {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 20px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
-/* ---------- OPTIONS ---------- */
+/* ---------- OPTIONS — Seranova EXACT style ---------- */
+/* Clean white rectangle, 2px solid black border, 6px radius, no radio/checkbox icons */
 .options-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .option-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: var(--white);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
+  gap: 10px;
+  background: var(--option-bg);
+  border: 2px solid var(--option-border);
+  border-radius: var(--option-radius);
+  padding: 14.4px 14.4px;
   cursor: pointer;
   transition: all var(--transition);
   user-select: none;
+  width: 100%;
   position: relative;
 }
 .option-item:hover {
-  border-color: var(--accent);
-  background: var(--accent-light);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-card);
+  background: #F5FAFA;
+  border-color: var(--option-selected-border);
 }
 .option-item.selected {
-  border-color: var(--accent);
-  background: var(--accent-light);
-  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
-}
-.option-item.selected .option-check {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
+  background: #E8F4F0;
+  border-color: var(--option-selected-border);
+  border-width: 2px;
 }
 
-.option-icon { font-size: 1.3rem; flex-shrink: 0; }
+/* Hide radio and checkbox — Seranova doesn't show them visually */
+.option-radio,
+.option-checkbox {
+  display: none;
+}
 
-.option-content { flex: 1; }
-.option-text {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-dark);
+.option-text-wrap { flex: 1; }
+.option-main-text {
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: var(--text-primary);
   display: block;
+  line-height: 1.4;
 }
-.option-desc {
-  font-size: 0.78rem;
-  color: var(--text-light);
+.option-sub-text {
+  font-size: 0.77rem;
+  color: var(--text-muted);
   display: block;
-  margin-top: 2px;
+  margin-top: 1px;
 }
-
-.option-check {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: transparent;
+.option-emoji {
+  font-size: 1.1rem;
   flex-shrink: 0;
-  transition: all var(--transition);
-  margin-left: auto;
+  min-width: 22px;
 }
 
-/* ---------- BUTTONS ---------- */
+/* ---------- BUTTONS — Seranova exact: dark teal, 40px radius ---------- */
 .btn-primary {
   display: block;
   width: 100%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  color: white;
+  background: var(--btn-bg);
+  color: var(--btn-text);
   font-family: var(--font);
   font-size: 1rem;
-  font-weight: 700;
-  padding: 16px 24px;
+  font-weight: 600;
+  padding: 15px 24px;
   border: none;
-  border-radius: 99px;
+  border-radius: var(--btn-radius);
   cursor: pointer;
   text-align: center;
   transition: all var(--transition);
-  box-shadow: 0 4px 16px rgba(139,92,246,0.35);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
+  text-decoration: none;
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(139,92,246,0.45);
+  background: #1e2e33;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(47,66,71,0.35);
+  color: var(--white);
   text-decoration: none;
-  color: white;
 }
 .btn-primary:active { transform: translateY(0); }
 
-.btn-large { font-size: 1.05rem; padding: 18px 28px; }
-.btn-continue { margin-top: 8px; }
 .btn-cta {
-  background: linear-gradient(135deg, var(--pink), #be185d);
-  box-shadow: 0 4px 16px rgba(236,72,153,0.35);
-  font-size: 1.1rem;
-}
-.btn-cta:hover { box-shadow: 0 8px 24px rgba(236,72,153,0.45); }
-.btn-offer {
-  background: linear-gradient(135deg, #10b981, #059669);
-  box-shadow: 0 4px 16px rgba(16,185,129,0.35);
+  background: #C0392B;
   font-size: 1.05rem;
-}
-.btn-offer:hover { box-shadow: 0 8px 24px rgba(16,185,129,0.45); }
-
-/* ---------- INTERSTITIAL ---------- */
-.interstitial-badge {
-  display: inline-block;
-  background: var(--green-light);
-  color: var(--green);
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 8px 20px;
-  border-radius: 99px;
-  margin-bottom: 20px;
+  padding: 17px 24px;
+}
+.btn-cta:hover { background: #a93226; }
+
+.btn-offer {
+  background: #16A34A;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 17px 24px;
+}
+.btn-offer:hover { background: #15803d; }
+
+/* ---------- INTERSTITIAL SCREENS ---------- */
+.interstitial-screen { text-align: center; }
+.interstitial-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
 }
 .interstitial-title {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.35;
-  margin-bottom: 28px;
-  color: var(--text-dark);
+  margin-bottom: 24px;
+  color: var(--text-primary);
 }
 
 /* ---------- TESTIMONIALS ---------- */
 .testimonials-stack {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-bottom: 28px;
+  gap: 12px;
+  margin-bottom: 24px;
+  text-align: left;
 }
-.testimonials-row {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 32px;
-}
-@media (min-width: 600px) {
-  .testimonials-row { flex-direction: row; }
-  .testimonials-row .testimonial-card { flex: 1; }
-}
-
 .testimonial-card {
   background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: var(--shadow-card);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 16px;
 }
 .testi-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 .testi-avatar {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--pink));
-  color: white;
+  background: var(--btn-bg);
+  color: var(--white);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.testi-header strong { font-size: 0.9rem; color: var(--text-dark); }
-.stars-small { color: var(--gold); font-size: 0.75rem; }
+.testi-name { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
+.testi-stars { color: var(--gold); font-size: 0.75rem; }
 .testimonial-card p {
   font-size: 0.85rem;
-  color: var(--text-mid);
-  line-height: 1.55;
+  color: var(--text-secondary);
+  line-height: 1.6;
   font-style: italic;
 }
 
 /* ---------- LOADING SCREEN ---------- */
-.loading-screen { text-align: center; padding-top: 48px; }
+.loading-screen {
+  text-align: center;
+  padding-top: 48px;
+}
 .loading-title {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 36px;
-  color: var(--text-dark);
+  color: var(--text-primary);
 }
 .loading-steps {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 340px;
+  gap: 14px;
+  max-width: 320px;
   margin: 0 auto 32px;
   text-align: left;
 }
 .loading-step {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   font-size: 0.95rem;
-  color: var(--text-mid);
+  color: var(--text-secondary);
   font-weight: 500;
 }
 .step-icon {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid var(--border);
+  border: 2px solid #D1D5DB;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   flex-shrink: 0;
   transition: all 0.3s;
+  color: #D1D5DB;
 }
 .step-icon.done {
   background: var(--green);
   border-color: var(--green);
-  color: white;
-  content: '✓';
+  color: var(--white);
 }
 .step-icon.active {
-  border-color: var(--accent);
-  color: var(--accent);
-  animation: pulse 1s infinite;
+  border-color: var(--btn-bg);
+  color: var(--btn-bg);
+  animation: spin 1s linear infinite;
 }
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-.loading-bar-wrap {
+.progress-track-wrap {
   height: 8px;
-  background: var(--border);
+  background: var(--progress-track);
   border-radius: 99px;
   overflow: hidden;
-  max-width: 340px;
+  max-width: 320px;
   margin: 0 auto;
 }
-.loading-bar-fill {
+.progress-track-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--pink));
+  background: var(--btn-bg);
   border-radius: 99px;
   width: 0%;
   transition: width 0.3s ease;
 }
 .loading-sub {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 12px;
 }
 
 /* ---------- PROFILE SCREEN ---------- */
@@ -485,361 +473,344 @@ a:hover { text-decoration: underline; }
   background: var(--green-light);
   color: var(--green);
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 8px 20px;
+  font-size: 0.85rem;
+  padding: 6px 16px;
   border-radius: 99px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .profile-title {
   font-size: 1.4rem;
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
 }
 .profile-sub {
-  font-size: 0.9rem;
-  color: var(--text-mid);
-  margin-bottom: 28px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
   line-height: 1.6;
 }
 .profile-metrics {
   background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 28px;
-  box-shadow: var(--shadow-card);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 24px;
 }
 .metric-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 .metric-row:last-child { margin-bottom: 0; }
 .metric-label {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--text-mid);
-  width: 140px;
+  color: var(--text-secondary);
+  width: 130px;
   flex-shrink: 0;
 }
-.metric-bar-wrap {
+.metric-bar-track {
   flex: 1;
-  height: 8px;
-  background: var(--border);
+  height: 7px;
+  background: #E5E7EB;
   border-radius: 99px;
   overflow: hidden;
 }
-.metric-bar {
+.metric-bar-fill {
   height: 100%;
   border-radius: 99px;
-  transition: width 1s ease;
 }
-.metric-bar.low { background: var(--red); }
-.metric-bar.high { background: var(--gold); }
+.metric-bar-fill.bad { background: var(--red); }
+.metric-bar-fill.warn { background: var(--gold); }
 .metric-val {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  width: 90px;
+  width: 80px;
   text-align: right;
   flex-shrink: 0;
 }
-.metric-val.low { color: var(--red); }
-.metric-val.high { color: var(--gold); }
+.metric-val.bad { color: var(--red); }
+.metric-val.warn { color: var(--gold); }
 
 /* ---------- INSIGHT BOX ---------- */
 .insight-box {
-  background: var(--accent-light);
-  border: 1px solid rgba(139,92,246,0.25);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  font-size: 0.85rem;
-  color: var(--text-mid);
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 0.84rem;
+  color: #1E40AF;
   line-height: 1.55;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 /* ---------- RESULTS SCREEN ---------- */
-.results-screen { padding-top: 24px; }
-.results-header { text-align: center; margin-bottom: 32px; }
-.results-badge {
-  font-size: 0.78rem;
+.results-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.results-eyebrow {
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-light);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-.results-title {
-  font-size: clamp(1.3rem, 4vw, 1.7rem);
-  font-weight: 800;
-  line-height: 1.3;
   margin-bottom: 8px;
 }
-.highlight { color: var(--accent); }
-.results-sub {
-  font-size: 0.9rem;
-  color: var(--text-light);
-}
-
-.transformation-grid {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 28px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow-card);
-}
-.transform-col { flex: 1; }
-.transform-arrow {
+.results-title {
   font-size: 1.5rem;
-  color: var(--accent);
-  align-self: center;
-  flex-shrink: 0;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  color: var(--text-primary);
 }
-.transform-label {
-  font-size: 0.7rem;
+.results-title .highlight { color: var(--btn-bg); }
+.results-sub { font-size: 0.88rem; color: var(--text-muted); }
+
+/* Before/After transformation */
+.transformation-card {
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.transformation-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.transform-col-label {
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 12px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.transform-arrow {
+  font-size: 1.2rem;
+  color: var(--btn-bg);
+  align-self: center;
+  text-align: center;
 }
 .transform-item {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 8px 10px;
-  border-radius: var(--radius-sm);
-  margin-bottom: 8px;
-  font-size: 0.82rem;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
 }
-.transform-item .t-icon { font-size: 1rem; }
-.transform-item span:nth-child(2) { font-weight: 600; color: var(--text-dark); }
-.t-level { font-size: 0.75rem; font-weight: 700; }
-.transform-item.bad { background: var(--red-light); }
-.transform-item.bad .t-level { color: var(--red); }
-.transform-item.good { background: var(--green-light); }
-.transform-item.good .t-level { color: var(--green); }
+.transform-item.bad { background: var(--red-light); color: var(--red); }
+.transform-item.good { background: var(--green-light); color: var(--green); }
+.transform-item span:nth-child(2) { font-weight: 600; flex: 1; }
+.transform-level { font-size: 0.7rem; font-weight: 700; }
 
-.results-checkmarks {
+.results-checks {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 32px;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 .result-check {
-  font-size: 0.9rem;
-  color: var(--text-mid);
-  padding: 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
   background: var(--green-light);
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
+  padding: 10px 12px;
   line-height: 1.5;
 }
+.result-check-icon { color: var(--green); font-size: 1rem; flex-shrink: 0; }
 
+/* How to use */
 .how-to-use {
   background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 32px;
-  box-shadow: var(--shadow-card);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
 }
 .how-to-use h3 {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--text-dark);
+  margin-bottom: 6px;
 }
 .how-to-use p {
-  font-size: 0.85rem;
-  color: var(--text-mid);
-  margin-bottom: 20px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
 }
 .steps-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
-@media (min-width: 480px) {
-  .steps-row { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 400px) {
+  .steps-row { grid-template-columns: repeat(2, 1fr); }
 }
 .step-item { text-align: center; }
 .step-num {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--pink));
-  color: white;
+  background: var(--btn-bg);
+  color: var(--white);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 8px;
+  margin: 0 auto 6px;
 }
-.step-item p { font-size: 0.78rem; color: var(--text-mid); line-height: 1.4; }
+.step-item p { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
 
 /* ---------- OFFER SCREEN ---------- */
-.offer-screen { padding-top: 24px; }
-.offer-urgency {
+.offer-eyebrow {
   text-align: center;
-  font-size: 0.82rem;
-  color: var(--text-light);
-  margin-bottom: 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
   font-style: italic;
 }
 .offer-title {
-  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  font-size: 1.5rem;
   font-weight: 800;
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   line-height: 1.3;
 }
 .offer-card {
   background: var(--white);
-  border: 2px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 40px;
-  box-shadow: var(--shadow);
+  border: 2px solid var(--btn-bg);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 36px;
 }
-.offer-product {
+.offer-product-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E5E7EB;
 }
-.offer-product-icon { font-size: 2.5rem; }
-.offer-product-info h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.offer-product-info p {
-  font-size: 0.78rem;
-  color: var(--text-light);
-  margin-bottom: 4px;
-}
+.offer-product-icon { font-size: 2.2rem; }
+.offer-product-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 3px; }
+.offer-product-info p { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
 .offer-pricing {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E5E7EB;
 }
-.price-original {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 4px;
-}
+.price-original { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 3px; }
 .price-original s { color: var(--red); }
-.price-discount {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 4px;
-}
-.price-discount strong { color: var(--green); }
-.price-save {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--green);
-}
+.price-quiz { font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin-bottom: 3px; }
+.price-quiz strong { color: var(--green); }
+.price-save { font-size: 0.84rem; font-weight: 600; color: var(--green); }
 .offer-guarantees {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-.guarantee-item {
-  font-size: 0.85rem;
-  color: var(--text-mid);
-  line-height: 1.5;
-}
-.offer-disclaimer {
-  text-align: center;
-  font-size: 0.72rem;
-  color: var(--text-light);
-  margin-top: 12px;
-}
-
-/* ---------- INGREDIENTS ---------- */
-.ingredients-section {
-  margin-bottom: 40px;
-}
-.ingredients-section h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-align: center;
-}
-.ingredients-intro {
-  font-size: 0.88rem;
-  color: var(--text-mid);
-  text-align: center;
+  gap: 8px;
   margin-bottom: 20px;
 }
-.ingredients-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+.guarantee-item { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; }
+.offer-disclaimer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 10px;
 }
-@media (min-width: 480px) {
-  .ingredients-grid { grid-template-columns: repeat(2, 1fr); }
+
+/* Ingredients */
+.ingredients-section { margin-bottom: 36px; }
+.ingredients-section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.ingredients-intro {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .ingredient-item {
   background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  box-shadow: var(--shadow-card);
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 12px 14px;
 }
 .ingredient-item strong {
   display: block;
   font-size: 0.88rem;
-  color: var(--accent);
-  margin-bottom: 4px;
+  color: var(--btn-bg);
+  margin-bottom: 3px;
 }
-.ingredient-item p {
-  font-size: 0.8rem;
-  color: var(--text-mid);
-  line-height: 1.5;
+.ingredient-item p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* Final CTA */
+.final-cta-wrap { text-align: center; margin-top: 8px; }
+.final-guarantee {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  text-align: center;
 }
 
-/* ---------- FINAL CTA ---------- */
-.final-cta-wrap { text-align: center; }
-.final-guarantee {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin-top: 12px;
-  text-align: center;
+/* Testimonials row */
+.testimonials-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
 /* ---------- FOOTER ---------- */
 .site-footer {
   background: var(--white);
-  border-top: 1px solid var(--border);
-  padding: 20px;
-  margin-top: 40px;
+  border-top: 1px solid #E5E7EB;
+  padding: 18px 20px;
 }
 .footer-inner {
-  max-width: 680px;
+  max-width: var(--max-width);
   margin: 0 auto;
   text-align: center;
 }
 .footer-inner p {
-  font-size: 0.78rem;
-  color: var(--text-light);
-  margin-bottom: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* ---------- DISCLAIMER ---------- */
+.disclaimer-small {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+  text-align: center;
 }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width: 480px) {
-  .transformation-grid { flex-direction: column; }
-  .transform-arrow { align-self: center; transform: rotate(90deg); }
-  .option-item { padding: 14px 14px; }
+@media (max-width: 520px) {
+  .quiz-container { padding: 0 14px 80px; }
+  .intro-headline { font-size: 1.45rem; }
+  .question-title { font-size: 1.25rem; }
+  .results-title { font-size: 1.3rem; }
+  .transformation-grid { grid-template-columns: 1fr; }
+  .transform-arrow { transform: rotate(90deg); text-align: center; }
 }

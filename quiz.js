@@ -1,213 +1,189 @@
 /* ============================================================
-   LUXE KOREAN UNDER-EYE BALM — QUIZ FUNNEL LOGIC
+   LUXE KOREAN UNDER-EYE BALM — QUIZ FUNNEL
+   JavaScript: Navigation, animations, loading screens
+   Screens: 0 (intro) → 1-17 (questions) → 9 (loading1) →
+            10 (profile) → 18 (loading2) → 19 (results) → 20 (offer)
    ============================================================ */
 
-// ---- STATE ----
-const TOTAL_QUESTIONS = 12;
+// ── State ────────────────────────────────────────────
 let currentScreen = 0;
-const totalScreens = 19; // screens 0–18
 
-// Screens that are questions (for progress tracking)
-const questionScreens = [1, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15];
-// Screens that auto-advance after delay
-const autoAdvanceScreens = {
-  9:  animateLoading,   // profile loading
-  16: animateLoading2   // results loading
-};
-// Screens that require a manual "Continue" button (multi-select)
-const multiSelectScreens = [2, 3, 11, 12];
-// Single-select screens auto-advance
-const singleSelectScreens = [1, 5, 6, 7, 8, 13, 14, 15];
+// Screens that auto-advance after single-choice selection
+// (screen 0 is intro+age combined, handled by selectSingleIntro)
+const AUTO_ADVANCE = [5, 6, 7, 8, 13, 15, 16, 17];
 
-// ---- INIT ----
+// ── Init ────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  setTargetDate();
+  // Set target date (3 weeks from now)
+  const target = new Date();
+  target.setDate(target.getDate() + 21);
+  const dateEl = document.getElementById('targetDate');
+  if (dateEl) {
+    dateEl.textContent = target.toLocaleDateString('en-US', {
+      month: 'long', day: 'numeric', year: 'numeric'
+    });
+  }
 });
 
-function setTargetDate() {
-  const el = document.getElementById('targetDate');
-  if (!el) return;
-  const d = new Date();
-  d.setDate(d.getDate() + 21);
-  const opts = { month: 'long', day: 'numeric', year: 'numeric' };
-  el.textContent = d.toLocaleDateString('en-US', opts);
+// ── Intro selection (screen 0 → screen 2, skipping placeholder 1) ─────────────
+function selectSingleIntro(el) {
+  const parent = el.closest('.options-list');
+  if (!parent) return;
+  parent.querySelectorAll('.option-item').forEach(item => item.classList.remove('selected'));
+  el.classList.add('selected');
+  // Show progress bar and go to screen 2
+  const wrap = document.getElementById('progressWrap');
+  if (wrap) wrap.classList.add('visible');
+  setTimeout(() => goToScreen(2), 300);
 }
 
-// ---- NAVIGATION ----
-function startQuiz() {
-  goToScreen(1);
-  document.getElementById('progressWrap').classList.add('visible');
+// ── Navigate to a screen ───────────────────────────────────
+function goToScreen(n) {
+  const prev = document.getElementById('screen-' + currentScreen);
+  const next = document.getElementById('screen-' + n);
+  if (!next) return;
+
+  if (prev) prev.classList.remove('active');
+  next.classList.add('active');
+  currentScreen = n;
+
+  updateProgress(n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Trigger loading animations
+  if (n === 9)  runLoadingAnimation1();
+  if (n === 18) runLoadingAnimation2();
 }
 
+// ── Next screen ────────────────────────────────────────────
 function nextScreen() {
   goToScreen(currentScreen + 1);
 }
 
-function goToScreen(n) {
-  if (n < 0 || n >= totalScreens) return;
+// ── Progress bar ───────────────────────────────────────────
+function updateProgress(n) {
+  const wrap = document.getElementById('progressWrap');
+  const fill = document.getElementById('progressBarFill');
+  if (!wrap || !fill) return;
 
-  // Hide current
-  const current = document.getElementById('screen-' + currentScreen);
-  if (current) current.classList.remove('active');
-
-  currentScreen = n;
-
-  // Show next
-  const next = document.getElementById('screen-' + currentScreen);
-  if (next) {
-    next.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 0) {
+    wrap.classList.remove('visible');
+    return;
   }
 
-  updateProgress();
+  wrap.classList.add('visible');
 
-  // Auto-advance screens
-  if (autoAdvanceScreens[currentScreen]) {
-    autoAdvanceScreens[currentScreen]();
+  // Screens 1–17 = questions, 18 = loading, 19–20 = results/offer
+  let pct = 0;
+  if (n >= 1 && n <= 17) {
+    pct = Math.round((n / 17) * 95); // cap at 95% until results
+  } else if (n >= 18) {
+    pct = 100;
   }
 
-  // Hide progress on intro and offer screens
-  const progressWrap = document.getElementById('progressWrap');
-  if (currentScreen === 0 || currentScreen >= 17) {
-    progressWrap.classList.remove('visible');
-  } else {
-    progressWrap.classList.add('visible');
-  }
+  fill.style.width = pct + '%';
 }
 
-// ---- PROGRESS ----
-function updateProgress() {
-  const bar = document.getElementById('progressBar');
-  const label = document.getElementById('progressLabel');
-  if (!bar || !label) return;
+// ── Single-choice selection ────────────────────────────────
+function selectSingle(el) {
+  const parent = el.closest('.options-list');
+  if (!parent) return;
 
-  const qIndex = questionScreens.indexOf(currentScreen);
-  let questionNum = qIndex >= 0 ? qIndex + 1 : null;
+  // Deselect all
+  parent.querySelectorAll('.option-item').forEach(item => {
+    item.classList.remove('selected');
+  });
 
-  // For non-question screens, find the last passed question
-  if (questionNum === null) {
-    for (let i = questionScreens.length - 1; i >= 0; i--) {
-      if (questionScreens[i] < currentScreen) {
-        questionNum = i + 1;
-        break;
-      }
-    }
-  }
-
-  const pct = questionNum ? Math.round((questionNum / TOTAL_QUESTIONS) * 100) : 0;
-  bar.style.setProperty('--progress', pct + '%');
-
-  if (questionNum && questionNum <= TOTAL_QUESTIONS) {
-    label.textContent = `Question ${questionNum} of ${TOTAL_QUESTIONS}`;
-  } else if (currentScreen >= 9 && currentScreen < 17) {
-    label.textContent = 'Almost done…';
-  } else {
-    label.textContent = '';
-  }
-}
-
-// ---- OPTION SELECTION ----
-
-// Single-select: select one option and auto-advance
-function selectSingle(el, groupId) {
-  const parent = el.closest('.options-list') || el.parentElement;
-  parent.querySelectorAll('.option-item').forEach(item => item.classList.remove('selected'));
+  // Select clicked
   el.classList.add('selected');
 
-  // Auto-advance after short delay
-  setTimeout(() => {
-    nextScreen();
-  }, 380);
+  // Auto-advance if this screen is in the list
+  if (AUTO_ADVANCE.includes(currentScreen)) {
+    setTimeout(() => nextScreen(), 300);
+  }
 }
 
-// Multi-select: toggle options, require Continue button
+// ── Multi-choice toggle ────────────────────────────────────
 function toggleMulti(el) {
   el.classList.toggle('selected');
 }
 
-// ---- LOADING ANIMATION: PROFILE (screen 9) ----
-function animateLoading() {
-  const steps = ['lstep-0', 'lstep-1', 'lstep-2', 'lstep-3'];
-  const fill = document.getElementById('loadingFill');
-  let i = 0;
+// ── Loading animation 1 (profile creation — screen 9) ─────
+function runLoadingAnimation1() {
+  const iconIds = ['sicon-0', 'sicon-1', 'sicon-2', 'sicon-3'];
+  const fill = document.getElementById('loadingFill1');
+  const delays = [600, 1400, 2200, 3000];
 
-  // Reset
-  steps.forEach(id => {
+  // Reset all icons
+  iconIds.forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.querySelector('.step-icon').className = 'step-icon pending';
+    if (el) {
+      el.classList.remove('done', 'active');
+      el.textContent = '○';
+    }
   });
   if (fill) fill.style.width = '0%';
 
-  const interval = setInterval(() => {
-    if (i > 0) {
-      const prev = document.getElementById(steps[i - 1]);
-      if (prev) {
-        const icon = prev.querySelector('.step-icon');
-        icon.className = 'step-icon done';
-        icon.textContent = '✓';
+  iconIds.forEach((id, i) => {
+    // Activate
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('active');
+        el.textContent = '↻';
       }
-    }
-    if (i < steps.length) {
-      const curr = document.getElementById(steps[i]);
-      if (curr) {
-        const icon = curr.querySelector('.step-icon');
-        icon.className = 'step-icon active';
-        icon.textContent = '●';
+      if (fill) fill.style.width = ((i + 0.5) / iconIds.length * 100) + '%';
+    }, delays[i]);
+
+    // Mark done
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('active');
+        el.classList.add('done');
+        el.textContent = '✓';
       }
-      if (fill) fill.style.width = ((i + 1) / steps.length * 100) + '%';
-      i++;
-    } else {
-      clearInterval(interval);
-      // Mark last step done
-      const last = document.getElementById(steps[steps.length - 1]);
-      if (last) {
-        const icon = last.querySelector('.step-icon');
-        icon.className = 'step-icon done';
-        icon.textContent = '✓';
+      if (fill) fill.style.width = ((i + 1) / iconIds.length * 100) + '%';
+
+      // After last step, advance
+      if (i === iconIds.length - 1) {
+        setTimeout(() => goToScreen(10), 600);
       }
-      if (fill) fill.style.width = '100%';
-      setTimeout(() => goToScreen(10), 600);
-    }
-  }, 900);
+    }, delays[i] + 600);
+  });
 }
 
-// ---- LOADING ANIMATION: RESULTS (screen 16) ----
-function animateLoading2() {
+// ── Loading animation 2 (calculating transformation — screen 18) ──
+function runLoadingAnimation2() {
   const fill = document.getElementById('loadingFill2');
-  if (!fill) return;
-  fill.style.width = '0%';
+  if (!fill) {
+    setTimeout(() => goToScreen(19), 2200);
+    return;
+  }
 
+  fill.style.width = '0%';
   let pct = 0;
+
   const interval = setInterval(() => {
-    pct += Math.random() * 12 + 5;
+    pct += Math.random() * 10 + 5;
     if (pct >= 100) {
       pct = 100;
       fill.style.width = '100%';
       clearInterval(interval);
-      setTimeout(() => goToScreen(17), 500);
+      setTimeout(() => goToScreen(19), 500);
     } else {
       fill.style.width = pct + '%';
     }
-  }, 200);
+  }, 180);
 }
 
-// ---- KEYBOARD NAVIGATION ----
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && currentScreen > 0) {
-    // Only advance if there's a visible continue button or we're on a loading screen
-    const continueBtn = document.querySelector('#screen-' + currentScreen + ' .btn-continue');
-    if (continueBtn) continueBtn.click();
-  }
-});
-
-// ---- ANALYTICS HELPERS (optional — add your pixel/GA here) ----
+// ── Analytics helpers (add your pixel/GA here) ────────────
 function trackEvent(name, data) {
-  // Example: window.fbq && fbq('trackCustom', name, data);
-  // Example: window.gtag && gtag('event', name, data);
+  // window.fbq && fbq('trackCustom', name, data);
+  // window.gtag && gtag('event', name, data);
   console.log('[Quiz Event]', name, data);
 }
 
-// Track quiz start
 window.addEventListener('load', () => {
   trackEvent('quiz_loaded', { product: 'luxe-under-eye-balm' });
 });
