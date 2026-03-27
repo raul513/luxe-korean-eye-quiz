@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxe | Korean Under-Eye Balm – Free Skin Quiz</title>
+  <meta name="description" content="Take this 1-minute quiz to find out if the Luxe Korean Under-Eye Balm is right for you and claim your exclusive discount." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-text">Luxe</span>
+        <span class="logo-sub">Research Lab</span>
+      </div>
+      <div class="header-badge">🔒 Secure Quiz</div>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="progress-label" id="progressLabel">Question 1 of 12</div>
+  </div>
+
+  <!-- QUIZ CONTAINER -->
+  <main class="quiz-container" id="quizContainer">
+
+    <!-- ===== SCREEN 0: INTRO ===== -->
+    <section class="screen active" id="screen-0">
+      <div class="screen-inner intro-screen">
+        <div class="promo-badge">🌸 SPRING SALE</div>
+        <h1 class="headline">Take This 1-Minute Quiz To <span class="underline-accent">Claim Your $20 Discount!</span></h1>
+        <p class="subheadline">Find out if the Luxe Korean Under-Eye Balm is the right solution for your under-eye concerns — and get a personalized skin profile.</p>
+        <div class="product-preview">
+          <div class="product-img-placeholder">
+            <div class="product-icon">👁️</div>
+            <p class="product-name">Luxe Korean Under-Eye Balm</p>
+            <div class="stars">★★★★★ <span>4.86 (10,839 reviews)</span></div>
+          </div>
+        </div>
+        <button class="btn-primary btn-large" onclick="startQuiz()">Start My Free Quiz →</button>
+        <p class="disclaimer-small">By clicking, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></p>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 1: AGE ===== -->
+    <section class="screen" id="screen-1">
+      <div class="screen-inner">
+        <div class="question-tag">Question 1 of 12</div>
+        <h2 class="question-title">How old are you? 🤔</h2>
+        <div class="options-list" id="q1-options">
+          <label class="option-item" onclick="selectSingle(this, 'q1')">
+            <span class="option-text">Over 65</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q1')">
+            <span class="option-text">55–64</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q1')">
+            <span class="option-text">45–54</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q1')">
+            <span class="option-text">35–44</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q1')">
+            <span class="option-text">Under 35</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 2: MAIN CONCERN ===== -->
+    <section class="screen" id="screen-2">
+      <div class="screen-inner">
+        <div class="question-tag">Question 2 of 12</div>
+        <h2 class="question-title">What is your biggest under-eye concern? 🤷</h2>
+        <p class="question-sub">(Choose as many as you like)</p>
+        <div class="options-list" id="q2-options">
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-icon">🫧</span>
+            <div class="option-content">
+              <span class="option-text">Puffiness & Bags</span>
+              <span class="option-desc">Swollen, puffy under-eyes in the morning</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-icon">🌑</span>
+            <div class="option-content">
+              <span class="option-text">Dark Circles</span>
+              <span class="option-desc">Shadowy, discolored skin under the eyes</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-icon">〰️</span>
+            <div class="option-content">
+              <span class="option-text">Fine Lines & Wrinkles</span>
+              <span class="option-desc">Crow's feet and crepey texture</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-icon">💧</span>
+            <div class="option-content">
+              <span class="option-text">Dryness & Crepey Skin</span>
+              <span class="option-desc">Thin, dry, papery under-eye skin</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-icon">😴</span>
+            <div class="option-content">
+              <span class="option-text">Tired-Looking Eyes</span>
+              <span class="option-desc">People always ask if you're tired</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+        <button class="btn-primary btn-continue" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 3: SEVERITY ===== -->
+    <section class="screen" id="screen-3">
+      <div class="screen-inner">
+        <div class="question-tag">Question 3 of 12</div>
+        <h2 class="question-title">How severe are your under-eye concerns? 🤷</h2>
+        <p class="question-sub">(Choose as many as you like)</p>
+        <div class="options-list" id="q3-options">
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Mild — Noticeable only up close</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Moderate — Visible in photos & mirrors</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Significant — Others notice & comment</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Severe — Makes me look much older/tired</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+        <button class="btn-primary btn-continue" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 4: SOCIAL PROOF INTERSTITIAL ===== -->
+    <section class="screen" id="screen-4">
+      <div class="screen-inner">
+        <div class="interstitial-badge">💪 You're in the right place!</div>
+        <h2 class="interstitial-title">Thousands of women have transformed their under-eyes with <strong>Luxe Korean Under-Eye Balm!</strong></h2>
+        <div class="testimonials-stack">
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">M</div>
+              <div>
+                <strong>Margaret T., 56</strong>
+                <div class="stars-small">★★★★★</div>
+              </div>
+            </div>
+            <p>"Day 4 my husband asked what I was doing differently. By day 10 the puffiness was genuinely less visible. First eye cream that actually did something I could see with my own eyes."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">D</div>
+              <div>
+                <strong>Diane K., 52</strong>
+                <div class="stars-small">★★★★★</div>
+              </div>
+            </div>
+            <p>"This absorbs in seconds and I could feel the difference by end of week one. My fine lines look softer. Dark circles lighter. I'm genuinely angry nobody told me about this sooner."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">S</div>
+              <div>
+                <strong>Susan L., 47</strong>
+                <div class="stars-small">★★★★★</div>
+              </div>
+            </div>
+            <p>"Three weeks in my under-eyes look rested. Smoother. More alive. My daughter said I look like I came back from vacation. I didn't lol. Just found the right eye balm finally."</p>
+          </div>
+        </div>
+        <button class="btn-primary btn-continue" onclick="nextScreen()">Continue My Quiz →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 5: SUN EXPOSURE ===== -->
+    <section class="screen" id="screen-5">
+      <div class="screen-inner">
+        <div class="question-tag">Question 4 of 12</div>
+        <h2 class="question-title">How often is your skin exposed to the sun? ☀️</h2>
+        <div class="options-list" id="q5-options">
+          <label class="option-item" onclick="selectSingle(this, 'q5')">
+            <span class="option-text">Rarely — I stay mostly indoors</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q5')">
+            <span class="option-text">Sometimes — Occasional outdoor activities</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q5')">
+            <span class="option-text">Often — I'm outdoors most days</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q5')">
+            <span class="option-text">Daily — Extended sun exposure regularly</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 6: SLEEP ===== -->
+    <section class="screen" id="screen-6">
+      <div class="screen-inner">
+        <div class="question-tag">Question 5 of 12</div>
+        <h2 class="question-title">How much sleep do you usually get? 💤</h2>
+        <div class="options-list" id="q6-options">
+          <label class="option-item" onclick="selectSingle(this, 'q6')">
+            <span class="option-text">Less than 5 hours</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q6')">
+            <span class="option-text">5–6 hours</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q6')">
+            <span class="option-text">7–8 hours</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q6')">
+            <span class="option-text">My sleep is unpredictable</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 7: STRESS ===== -->
+    <section class="screen" id="screen-7">
+      <div class="screen-inner">
+        <div class="question-tag">Question 6 of 12</div>
+        <h2 class="question-title">I feel the pressure of stress… 😤</h2>
+        <div class="options-list" id="q7-options">
+          <label class="option-item" onclick="selectSingle(this, 'q7')">
+            <span class="option-text">Most days, especially at work</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q7')">
+            <span class="option-text">Mainly during busy periods</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q7')">
+            <span class="option-text">Occasionally</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q7')">
+            <span class="option-text">Rarely — I manage stress well</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 8: SKIN SENSITIVITY ===== -->
+    <section class="screen" id="screen-8">
+      <div class="screen-inner">
+        <div class="question-tag">Question 7 of 12</div>
+        <h2 class="question-title">Do you have sensitive skin? 🤔</h2>
+        <p class="question-sub">The under-eye area is the thinnest skin on your face</p>
+        <div class="options-list" id="q8-options">
+          <label class="option-item" onclick="selectSingle(this, 'q8')">
+            <span class="option-text">Yes — My skin reacts to most products</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q8')">
+            <span class="option-text">Sometimes — Certain ingredients irritate me</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q8')">
+            <span class="option-text">No — My skin tolerates most products</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 9: LOADING / PROFILE CREATION ===== -->
+    <section class="screen" id="screen-9">
+      <div class="screen-inner loading-screen">
+        <h2 class="loading-title">Creating your eye skin profile… 🔬</h2>
+        <div class="loading-steps" id="loadingSteps">
+          <div class="loading-step" id="lstep-0">
+            <span class="step-icon pending">○</span>
+            <span>Evaluating your answers</span>
+          </div>
+          <div class="loading-step" id="lstep-1">
+            <span class="step-icon pending">○</span>
+            <span>Analyzing your under-eye condition</span>
+          </div>
+          <div class="loading-step" id="lstep-2">
+            <span class="step-icon pending">○</span>
+            <span>Determining your skin type</span>
+          </div>
+          <div class="loading-step" id="lstep-3">
+            <span class="step-icon pending">○</span>
+            <span>Building your personal profile</span>
+          </div>
+        </div>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar-fill" id="loadingFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 10: PROFILE RESULT ===== -->
+    <section class="screen" id="screen-10">
+      <div class="screen-inner">
+        <div class="profile-badge">✅ Perfect Match for Luxe!</div>
+        <h2 class="profile-title">Your Personal Under-Eye Profile</h2>
+        <p class="profile-sub">Based on your age, under-eye condition, and lifestyle, you are an <strong>ideal candidate</strong> to achieve visibly brighter, smoother, and more rested-looking eyes with Luxe Korean Under-Eye Balm — with no pain or risk of side effects.</p>
+        <div class="profile-metrics">
+          <div class="metric-row">
+            <span class="metric-label">Under-Eye Hydration</span>
+            <div class="metric-bar-wrap"><div class="metric-bar low" style="width:30%"></div></div>
+            <span class="metric-val low">Low</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Skin Elasticity</span>
+            <div class="metric-bar-wrap"><div class="metric-bar low" style="width:25%"></div></div>
+            <span class="metric-val low">Below Average</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Dark Circle Intensity</span>
+            <div class="metric-bar-wrap"><div class="metric-bar high" style="width:75%"></div></div>
+            <span class="metric-val high">High</span>
+          </div>
+        </div>
+        <button class="btn-primary btn-continue" onclick="nextScreen()">See My Results →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 11: PREVIOUS SOLUTIONS ===== -->
+    <section class="screen" id="screen-11">
+      <div class="screen-inner">
+        <div class="question-tag">Question 8 of 12</div>
+        <h2 class="question-title">What solutions have you tried before? 💸</h2>
+        <p class="question-sub">(Choose all that apply)</p>
+        <div class="options-list" id="q11-options">
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Eye creams & serums</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Retinol products</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Vitamin C serums</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Luxury department store brands</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Concealer / makeup coverage</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <span class="option-text">Nothing — I haven't found anything that works</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+        <button class="btn-primary btn-continue" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 12: EXPERIENCE WITH PRODUCTS ===== -->
+    <section class="screen" id="screen-12">
+      <div class="screen-inner">
+        <div class="question-tag">Question 9 of 12</div>
+        <h2 class="question-title">What was your experience with these products? 😔</h2>
+        <p class="question-sub">(Choose all that apply)</p>
+        <div class="options-list" id="q12-options">
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <div class="option-content">
+              <span class="option-text">Amazing</span>
+              <span class="option-desc">Great results exactly as promised</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <div class="option-content">
+              <span class="option-text">Saw some improvement</span>
+              <span class="option-desc">Helped with hydration but not puffiness or dark circles</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <div class="option-content">
+              <span class="option-text">Disappointing</span>
+              <span class="option-desc">Spent a lot but saw minimal results</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <div class="option-content">
+              <span class="option-text">Complete waste of money</span>
+              <span class="option-desc">Saw zero improvement</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item multi" onclick="toggleMulti(this)">
+            <div class="option-content">
+              <span class="option-text">Irritated or damaged my skin</span>
+              <span class="option-desc">Caused redness, stinging, or puffiness</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+        <div class="insight-box">
+          💡 <strong>If you want truly rested, younger-looking eyes</strong> you need ingredients that actually absorb into the thin under-eye skin — not sit on top of it.
+        </div>
+        <button class="btn-primary btn-continue" onclick="nextScreen()">Continue →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 13: SKINCARE ROUTINE ===== -->
+    <section class="screen" id="screen-13">
+      <div class="screen-inner">
+        <div class="question-tag">Question 10 of 12</div>
+        <h2 class="question-title">What does your current skincare routine look like? 🧴</h2>
+        <div class="options-list" id="q13-options">
+          <label class="option-item" onclick="selectSingle(this, 'q13')">
+            <div class="option-content">
+              <span class="option-text">Minimal routine</span>
+              <span class="option-desc">Just cleanser and moisturizer (or less)</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q13')">
+            <div class="option-content">
+              <span class="option-text">Basic routine</span>
+              <span class="option-desc">Cleanser, moisturizer, and SPF</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q13')">
+            <div class="option-content">
+              <span class="option-text">Moderate routine</span>
+              <span class="option-desc">Multiple products (serums, eye cream, etc.)</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q13')">
+            <div class="option-content">
+              <span class="option-text">Extensive routine</span>
+              <span class="option-desc">5+ products with active ingredients</span>
+            </div>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 14: EMOTIONAL QUESTION ===== -->
+    <section class="screen" id="screen-14">
+      <div class="screen-inner">
+        <div class="question-tag">Question 11 of 12</div>
+        <h2 class="question-title">Have you ever felt like your under-eyes make you look older than you feel inside? 🤔</h2>
+        <div class="options-list" id="q14-options">
+          <label class="option-item" onclick="selectSingle(this, 'q14')">
+            <span class="option-text">Yes — Every time I look in the mirror</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q14')">
+            <span class="option-text">Sometimes — Especially in photos</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q14')">
+            <span class="option-text">Occasionally — On bad days</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q14')">
+            <span class="option-text">Not really — I'm comfortable with my skin</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 15: EVENT ===== -->
+    <section class="screen" id="screen-15">
+      <div class="screen-inner">
+        <div class="question-tag">Question 12 of 12</div>
+        <h2 class="question-title">Do you have an important event coming up? 📅</h2>
+        <p class="question-sub">Having something to look forward to can be a great motivator for reaching your goal</p>
+        <div class="options-list" id="q15-options">
+          <label class="option-item" onclick="selectSingle(this, 'q15')">
+            <span class="option-text">Wedding or special celebration</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q15')">
+            <span class="option-text">Vacation or travel</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q15')">
+            <span class="option-text">Family reunion or photos</span>
+            <span class="option-check">✓</span>
+          </label>
+          <label class="option-item" onclick="selectSingle(this, 'q15')">
+            <span class="option-text">Just want to feel confident daily</span>
+            <span class="option-check">✓</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 16: CALCULATING ===== -->
+    <section class="screen" id="screen-16">
+      <div class="screen-inner loading-screen">
+        <h2 class="loading-title">Calculating your possible eye transformation… ✨</h2>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar-fill" id="loadingFill2"></div>
+        </div>
+        <p class="loading-sub">Analyzing your unique under-eye profile…</p>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 17: RESULTS ===== -->
+    <section class="screen" id="screen-17">
+      <div class="screen-inner results-screen">
+        <div class="results-header">
+          <div class="results-badge">Based on your answers:</div>
+          <h2 class="results-title">You Are Just <span class="highlight">3 Weeks Away</span> From Brighter, Rested-Looking Eyes!</h2>
+          <p class="results-sub">Here's what you can expect:</p>
+        </div>
+
+        <div class="transformation-grid">
+          <div class="transform-col before">
+            <div class="transform-label">RIGHT NOW</div>
+            <div class="transform-item bad">
+              <span class="t-icon">🫧</span>
+              <span>Puffiness & Bags</span>
+              <span class="t-level">Visible</span>
+            </div>
+            <div class="transform-item bad">
+              <span class="t-icon">🌑</span>
+              <span>Dark Circles</span>
+              <span class="t-level">Moderate–High</span>
+            </div>
+            <div class="transform-item bad">
+              <span class="t-icon">〰️</span>
+              <span>Fine Lines</span>
+              <span class="t-level">Present</span>
+            </div>
+            <div class="transform-item bad">
+              <span class="t-icon">💧</span>
+              <span>Hydration</span>
+              <span class="t-level">Below Average</span>
+            </div>
+          </div>
+          <div class="transform-arrow">→</div>
+          <div class="transform-col after">
+            <div class="transform-label">AFTER LUXE</div>
+            <div class="transform-item good">
+              <span class="t-icon">✅</span>
+              <span>Puffiness & Bags</span>
+              <span class="t-level">Visibly Reduced</span>
+            </div>
+            <div class="transform-item good">
+              <span class="t-icon">✅</span>
+              <span>Dark Circles</span>
+              <span class="t-level">Visibly Lighter</span>
+            </div>
+            <div class="transform-item good">
+              <span class="t-icon">✅</span>
+              <span>Fine Lines</span>
+              <span class="t-level">Smoothed</span>
+            </div>
+            <div class="transform-item good">
+              <span class="t-icon">✅</span>
+              <span>Hydration</span>
+              <span class="t-level">Deeply Restored</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-checkmarks">
+          <div class="result-check">✅ First visible results within just <strong>1 week</strong> of daily use.</div>
+          <div class="result-check">✅ Visibly reduced puffiness and dark circles by <strong id="targetDate"></strong></div>
+          <div class="result-check">✅ No fragrance, no alcohol, no harsh actives — <strong>safe for sensitive skin</strong></div>
+        </div>
+
+        <div class="how-to-use">
+          <h3>You Can Use Luxe In Just 2 Minutes From Home</h3>
+          <p>You don't need a complicated 10-step routine. Just apply a small dab of Luxe Korean Under-Eye Balm morning and night — and let it work its magic.</p>
+          <div class="steps-row">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <p>Cleanse your face</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <p>Apply a small dab under each eye</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <p>Let it absorb in seconds</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <p>Apply makeup or go bare — it works either way</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary btn-large btn-cta" onclick="nextScreen()">Claim My Discount Now →</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 18: FINAL CTA / OFFER ===== -->
+    <section class="screen" id="screen-18">
+      <div class="screen-inner offer-screen">
+        <div class="offer-urgency">⏰ Applying your one-time discount…</div>
+        <h2 class="offer-title">Congratulations! 🎉 Your Personalized Offer is Ready</h2>
+
+        <div class="offer-card">
+          <div class="offer-product">
+            <div class="offer-product-icon">👁️</div>
+            <div class="offer-product-info">
+              <h3>Luxe Korean Under-Eye Balm</h3>
+              <p>Korea Formulated for +45 Skin</p>
+              <div class="stars">★★★★★ <span>4.86 (10,839 reviews)</span></div>
+            </div>
+          </div>
+
+          <div class="offer-pricing">
+            <div class="price-original">Regular Price: <s>$39.95</s></div>
+            <div class="price-discount">Your Quiz Price: <strong>$34.99</strong></div>
+            <div class="price-save">You Save: $4.96 + FREE Shipping</div>
+          </div>
+
+          <div class="offer-guarantees">
+            <div class="guarantee-item">🛡️ <strong>30-Day Money-Back Guarantee</strong> — Full refund if you don't see results</div>
+            <div class="guarantee-item">🚚 <strong>Free Shipping</strong> — Ships today</div>
+            <div class="guarantee-item">✅ <strong>100% Dermatologist Approved</strong></div>
+          </div>
+
+          <a href="https://luxeresearchlab.com/products/luxe-korean-under-eye-balm" class="btn-primary btn-large btn-offer" target="_blank">
+            🛒 Claim My Discount — $34.99
+          </a>
+
+          <p class="offer-disclaimer">Secure checkout. 256-bit SSL encryption. You can cancel anytime.</p>
+        </div>
+
+        <div class="ingredients-section">
+          <h3>Why Luxe Works When Others Don't</h3>
+          <p class="ingredients-intro">Five targeted ingredients. Each one does one specific job for your under-eye skin:</p>
+          <div class="ingredients-grid">
+            <div class="ingredient-item">
+              <strong>Sodium Hyaluronate</strong>
+              <p>Pulls moisture deep into skin. Plumps dry, crepey under-eyes.</p>
+            </div>
+            <div class="ingredient-item">
+              <strong>Adenosine</strong>
+              <p>Smooths fine lines. Firms skin that's lost its bounce.</p>
+            </div>
+            <div class="ingredient-item">
+              <strong>Argan Oil</strong>
+              <p>Softens and nourishes. Absorbs fast. No greasy residue.</p>
+            </div>
+            <div class="ingredient-item">
+              <strong>Vitamin E</strong>
+              <p>Protects your skin from daily damage your eyes always show.</p>
+            </div>
+            <div class="ingredient-item">
+              <strong>Bisabolol</strong>
+              <p>Calms redness and irritation on contact. Made for sensitive skin.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="final-testimonials">
+          <h3>Women Who Stopped Settling For "Good Enough"</h3>
+          <div class="testimonials-row">
+            <div class="testimonial-card">
+              <div class="testi-header">
+                <div class="testi-avatar">L</div>
+                <div>
+                  <strong>Linda R., 51</strong>
+                  <div class="stars-small">★★★★★</div>
+                </div>
+              </div>
+              <p>"Two weeks into using this I skipped concealer one morning just to test it. My coworker said I looked good. No concealer. First time in years honestly."</p>
+            </div>
+            <div class="testimonial-card">
+              <div class="testi-header">
+                <div class="testi-avatar">C</div>
+                <div>
+                  <strong>Carol A., 63</strong>
+                  <div class="stars-small">★★★★★</div>
+                </div>
+              </div>
+              <p>"The dark circles are visibly lighter. Yesterday I caught myself actually looking in the mirror. Not glancing. Looking. That alone was worth every penny."</p>
+            </div>
+            <div class="testimonial-card">
+              <div class="testi-header">
+                <div class="testi-avatar">B</div>
+                <div>
+                  <strong>Barbara M., 43</strong>
+                  <div class="stars-small">★★★★★</div>
+                </div>
+              </div>
+              <p>"Last Sunday my daughter grabbed my phone and took a selfie of us. I looked at it and didn't delete it. That hasn't happened in a long time. Three weeks using this."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="final-cta-wrap">
+          <a href="https://luxeresearchlab.com/products/luxe-korean-under-eye-balm" class="btn-primary btn-large btn-offer" target="_blank">
+            🛒 Get Luxe Korean Under-Eye Balm — $34.99
+          </a>
+          <p class="final-guarantee">🛡️ 30-Day Full Refund Guarantee · Free Shipping · Ships Today</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 Luxe Research Lab · <a href="https://luxeresearchlab.com">luxeresearchlab.com</a></p>
+      <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a> · <a href="#">Contact Us</a></p>
+    </div>
+  </footer>
+
+  <script src="quiz.js"></script>
+</body>
+</html>
